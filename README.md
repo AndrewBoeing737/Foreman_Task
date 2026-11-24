@@ -16,6 +16,7 @@
 **Как работает роль:**
 1. Модуль `lineinfile` открывает `/etc/ssh/sshd_config`, находит строку `PermitRootLogin` и заменяет её на `PermitRootLogin no`.
 2. Модуль `service` перезапускает службу `ssh`, чтобы новые параметры сразу вступили в силу.
+<img width="1918" height="911" alt="Ansible_role" src="https://github.com/user-attachments/assets/fb70fc2d-a789-447c-8012-65ea073a01b3" />
 
 *(Скриншот: `screenshots/Ansible_role.png`)*
 
