@@ -1,0 +1,11 @@
+---
+- name: Запрещаем вход под root по SSH
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?PermitRootLogin'
+    line: 'PermitRootLogin no'
+
+- name: Перезапускаем службу SSH чтобы настройки применились
+  service:
+    name: ssh
+    state: restarted
