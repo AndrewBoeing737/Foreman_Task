@@ -18,7 +18,6 @@
 2. Модуль `service` перезапускает службу `ssh`, чтобы новые параметры сразу вступили в силу.
 <img width="1918" height="911" alt="Ansible_role" src="https://github.com/user-attachments/assets/fb70fc2d-a789-447c-8012-65ea073a01b3" />
 
-*(Скриншот: `screenshots/Ansible_role.png`)*
 
 ### 2.2. Provisioning Template с настройкой NTP
 На базе стандартного шаблона `Preseed default` создан пользовательский шаблон `Preseed default Debian13` (`templates/preseed default Debian13.erb`)
@@ -27,14 +26,20 @@
 ```bash
 in-target apt-get update && in-target apt-get install -y chrony && in-target bash -c 'echo "pool 0.ru.pool.ntp.org iburst" >> /etc/chrony/chrony.conf' && in-target systemctl enable chrony
 ```
-*(Скриншот шаблона: `screenshots/02_provisioning_template.png`)*
+<img width="1908" height="908" alt="Preseed default" src="https://github.com/user-attachments/assets/445d6c66-e736-4c40-978a-65da8dc581cd" />
 
 ### 2.3. Настройка Host Group и регистрация Managed Host
-1. Создана группа узлов (**Host Group**), объединяющая ОС Debian 13, шаблон развёртывания с NTP и Ansible-роль `disable_root_ssh` *(скриншот: `screenshots/Host Group.png`)* 
-*(скриншот: `screenshots/Host Group Ansible.png`)*.
-2. Узел `client1.lab.local` зарегистрирован в Foreman с привязкой к созданной группе узлов *(скриншот: `screenshots/Client1.png`)*.
+1. Создана группа узлов (**Host Group**), объединяющая ОС Debian 13, шаблон развёртывания с NTP и Ansible-роль `disable_root_ssh` 
+
+
+2. Узел `client1.lab.local` зарегистрирован в Foreman с привязкой к созданной группе узлов *(скриншот: `screenshots/Client1.png`)*
+.
+
 3. Через веб-интерфейс Foreman запущено применение унаследованных Ansible-ролей (*Run Ansible roles*). Задача завершилась со статусом **Succeeded** *(скриншот: `screenshots/Client 1 Ansible.png`)*.
-4. Проверка на стороне клиента (`grep PermitRootLogin /etc/ssh/sshd_config`) подтвердила, что вход под `root` отключён (`PermitRootLogin no`) *(скриншот: `screenshots/root check.png`)*.
+
+
+4. Проверка на стороне клиента (`grep PermitRootLogin /etc/ssh/sshd_config`) подтвердила, что вход под `root` отключён (`PermitRootLogin no`)
+<img width="817" height="43" alt="root check" src="https://github.com/user-attachments/assets/ea437a92-9373-426a-b939-50b5f1c531f9" />
 
 ---
 
